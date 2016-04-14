@@ -1,10 +1,10 @@
-package mouse;
+package CanvasToDraw.WithShape.mouse;
 
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
-import resize.IResize;
+import CanvasToDraw.WithShape.resize.IResize;
 
 /**
  *
@@ -54,7 +54,7 @@ public class MouseAdapterForResize extends MouseAdapter{
             return;
         }
 //        System.out.println("old : " + myResizeToHandle.getPoints()[myResizeToHandle.getPos()]);
-        System.out.println(event.getPoint());
+//        System.out.println(event.getPoint());
         myResizeToHandle.getPoints()[myResizeToHandle.getPos()] 
                 = event.getPoint();//auti i grammi pairnei ton pinaka 
                                     //kai paei kai bazei ti kainourgia thesi

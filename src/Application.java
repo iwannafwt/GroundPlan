@@ -1,4 +1,7 @@
-package resize;
+
+import mainFrame.ResizingRectangle;
+
+
 
 /**
  *

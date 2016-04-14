@@ -1,5 +1,6 @@
-package resize;
+package CanvasToDraw.WithShape.resize;
 
+import CanvasToDraw.WithShape.background.Background;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -94,7 +95,7 @@ public class Resize  extends JPanel implements IResize  {
     private void doDrawing(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
-        g2.setColor(Color.cyan);//to xrwmma apo ta mikra ta tetragwnakia
+        g2.setColor(Color.red);//to xrwmma apo ta mikra ta tetragwnakia
         Rectangle2D r = new Rectangle2D.Double();
         
         for (Point2D point : points) {//to mikro tetragwno
@@ -112,16 +113,16 @@ public class Resize  extends JPanel implements IResize  {
             g2.fill(r);//gemizei to tetragwno
             g2.draw(r);//kanei to perigramma tou tetragwnou
         
-            
-            
-            setBackground(Color.PINK);
-            
+        setBackground(Color.gray);
+         
+        Background backGround = new Background();
+        
+        backGround.backgroundColour(800, 800, 50 , 50, g2);
+        
         }
-
     }
     
     
-
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
