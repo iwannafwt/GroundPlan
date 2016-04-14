@@ -32,8 +32,7 @@ public class MouseAdapterForMoving extends MouseAdapter{
             r.setFrameFromDiagonal(iResizeHandle.getPoints()[i], 
                     iResizeHandle.getPoints()[i+1]);
             if (r.contains(p)) {
-
-                iResizeHandle.setPosForItem(i);//TODO
+                iResizeHandle.setPosForItem(i);//dixnoume gia poio antikeimeno milame
                 return;
             }
         }

@@ -54,7 +54,7 @@ public class MouseAdapterForResize extends MouseAdapter{
             return;
         }
 //        System.out.println("old : " + myResizeToHandle.getPoints()[myResizeToHandle.getPos()]);
-        System.out.println(event.getPoint());
+//        System.out.println(event.getPoint());
         myResizeToHandle.getPoints()[myResizeToHandle.getPos()] 
                 = event.getPoint();//auti i grammi pairnei ton pinaka 
                                     //kai paei kai bazei ti kainourgia thesi
