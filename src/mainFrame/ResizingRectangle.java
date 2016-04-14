@@ -1,11 +1,13 @@
-package resize;
+package mainFrame;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import mouse.MouseAdapterForMoving;
-import mouse.MouseAdapterForResize;
+import CanvasToDraw.WithShape.mouse.MouseAdapterForMoving;
+import CanvasToDraw.WithShape.mouse.MouseAdapterForResize;
+import CanvasToDraw.WithShape.resize.IResize;
+import CanvasToDraw.WithShape.resize.Resize;
 
 /**
  *
@@ -27,7 +29,7 @@ public class ResizingRectangle extends JFrame{
         
         if(IR instanceof JPanel){
             
-        split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JPanel(), (JPanel)IR);
+        split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,  new JPanel() , (JPanel)IR);
         split.setContinuousLayout(false);
         split.setOneTouchExpandable(false);
 
@@ -39,7 +41,7 @@ public class ResizingRectangle extends JFrame{
         }
         
 
-        setTitle("Resize rectangle");
+        setTitle("Ground Plan");
         setSize(800, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);    

@@ -1,4 +1,4 @@
-package resize;
+package CanvasToDraw.WithShape.resize;
 
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;

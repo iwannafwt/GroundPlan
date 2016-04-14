@@ -1,6 +1,6 @@
-package resize;
+package CanvasToDraw.WithShape.resize;
 
-import background.Background;
+import CanvasToDraw.WithShape.background.Background;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;

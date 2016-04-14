@@ -1,5 +1,5 @@
 
-import resize.ResizingRectangle;
+import mainFrame.ResizingRectangle;
 
 
 
