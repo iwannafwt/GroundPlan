@@ -15,14 +15,28 @@ import javax.swing.JPanel;
  *
  * @author ΙΩΑΝΝΑ
  */
-public class RectangleForToolBox extends JPanel {
+public class RectangleForToolBox extends JPanel implements IRectangleForShape{
+    private int pos;
+            
+    //<editor-fold desc="GettersSetters" defaultstate="collapsed">
 
+    public int getPos() {
+        return pos;
+    }
+
+    public void setPos(int pos) {
+        this.pos = pos;
+    }
+    
+    //</editor-fold>
+    
     public void registerListeners(MouseAdapter MA) {//prosthetoume tous listener
         addMouseListener(MA);//sinartisi tou JPanel
         addMouseMotionListener(MA);//sinartisi tou JPanel
     }
 
     private void doDrawing(Graphics g) {
+        pos = -1;
 
         Graphics2D g2d = (Graphics2D) g;
 
