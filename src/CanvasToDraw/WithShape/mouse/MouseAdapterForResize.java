@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
-import CanvasToDraw.WithShape.resize.IResize;
+import CanvasToDraw.WithShape.shape.IRectangle;
 
 /**
  *
@@ -12,9 +12,9 @@ import CanvasToDraw.WithShape.resize.IResize;
  */
 public class MouseAdapterForResize extends MouseAdapter{
     
-    private final IResize myResizeToHandle;
+    private final IRectangle myResizeToHandle;
     
-    public MouseAdapterForResize(IResize myResizeToHandle){
+    public MouseAdapterForResize(IRectangle myResizeToHandle){
         this.myResizeToHandle = myResizeToHandle;
     }
     
@@ -36,7 +36,7 @@ public class MouseAdapterForResize extends MouseAdapter{
 
             if (r.contains(p)) {
 
-                myResizeToHandle.setPos(i);//TODO
+                myResizeToHandle.setPos(i);
                 return;
             }
         }

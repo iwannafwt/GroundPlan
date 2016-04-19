@@ -1,4 +1,4 @@
-package CanvasToDraw.WithShape.resize;
+package CanvasToDraw.WithShape.shape;
 
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -8,7 +8,7 @@ import java.awt.geom.Point2D;
  *
  * @author ΙΩΑΝΝΑ
  */
-public interface IResize {
+public interface IRectangle {
 
     void doUpdate();
 

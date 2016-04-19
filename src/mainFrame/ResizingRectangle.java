@@ -6,8 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import CanvasToDraw.WithShape.mouse.MouseAdapterForMoving;
 import CanvasToDraw.WithShape.mouse.MouseAdapterForResize;
-import CanvasToDraw.WithShape.resize.IResize;
-import CanvasToDraw.WithShape.resize.Resize;
+import CanvasToDraw.WithShape.shape.Rectangle;
+import CanvasToDraw.WithShape.shape.IRectangle;
+import toolboxPanel.rectangleForToolBox.RectangleForToolBox;
 
 /**
  *
@@ -22,14 +23,15 @@ public class ResizingRectangle extends JFrame{
     }
     
     private void initUI() {
-        IResize IR = new Resize(150,50,150,100);//diastaseis apo ta tetragwnakia
+        IRectangle IR = new Rectangle(150,50,150,100);//diastaseis apo ta tetragwnakia
+        RectangleForToolBox r = new RectangleForToolBox();
         
         IR.registerListeners(new MouseAdapterForResize(IR));
         IR.registerListeners(new MouseAdapterForMoving(IR));
         
         if(IR instanceof JPanel){
             
-        split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,  new JPanel() , (JPanel)IR);
+        split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,  r , (JPanel)IR);
         split.setContinuousLayout(false);
         split.setOneTouchExpandable(false);
 
@@ -44,6 +46,7 @@ public class ResizingRectangle extends JFrame{
         setTitle("Ground Plan");
         setSize(800, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);    
         
         
