@@ -1,10 +1,11 @@
 package toolboxPanel.rectangleForToolBox;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
+import toolboxPanel.mouseAdapter.MouseEventsForToolBox;
+import toolboxPanel.mouseAdapter.MouseListenerForRectangle;
 
 /**
  *
@@ -27,12 +28,13 @@ public class RectangleForToolBox extends JPanel implements IRectangleForToolBox 
     private void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
-        Font font = new Font("Serif", Font.BOLD, 40);
-        g2d.setFont(font);
-
         //i dimiourgia tou tetragwnou
         g2d.setPaint(new Color(0, 0, 100));// to xrwmma pou tha exei to tetragwno
         g2d.fill(rectangle);
+        
+        
+      addMouseListener(new MouseEventsForToolBox());
+      addMouseMotionListener(new MouseListenerForRectangle());
     }
     
     @Override

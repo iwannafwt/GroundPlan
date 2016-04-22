@@ -29,6 +29,7 @@ public class ResizingRectangle extends JFrame{
         IR.registerListeners(new MouseAdapterForResize(IR));
         IR.registerListeners(new MouseAdapterForMoving(IR));
         
+
         if(IR instanceof JPanel){
             
         split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,  r , (JPanel)IR);
