@@ -87,8 +87,8 @@ public class Rectangle  extends JPanel implements IRectangle  {
          *--------*
         */
         //to deutero tetragwno
-        points[2] = new Point2D.Double(x1*2, y1*2);
-        points[3] = new Point2D.Double(x2*2, y2*2);
+      //  points[2] = new Point2D.Double(x1*2, y1*2);
+     //   points[3] = new Point2D.Double(x2*2, y2*2);
         
     }
     
@@ -97,7 +97,6 @@ public class Rectangle  extends JPanel implements IRectangle  {
 
         g2.setColor(Color.red);//to xrwmma apo ta mikra ta tetragwnakia
         Rectangle2D r = new Rectangle2D.Double();
-        
         for (Point2D point : points) {//to mikro tetragwno
             //einai to kentro tou mikrou tetragwnou
             double x = point.getX() - SIZE / 2;
@@ -112,6 +111,8 @@ public class Rectangle  extends JPanel implements IRectangle  {
             g2.setPaint(new Color(0, 0, 100));// to xrwmma pou tha exei to tetragwno
             g2.fill(r);//gemizei to tetragwno
             g2.draw(r);//kanei to perigramma tou tetragwnou
+        
+    }
         
         setBackground(Color.gray);
          
