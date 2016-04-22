@@ -1,4 +1,4 @@
-package CanvasToDraw.WithShape.resize;
+package CanvasToDraw.WithShape.shape;
 
 import CanvasToDraw.WithShape.background.Background;
 import java.awt.Color;
@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  *
  * @author ΙΩΑΝΝΑ
  */
-public class Resize  extends JPanel implements IResize  {
+public class Rectangle  extends JPanel implements IRectangle  {
     private Point2D[] points;
     private final int SIZE = 8;//to megethos apo to mikro tetragwnaki
     private int pos;
@@ -59,7 +59,7 @@ public class Resize  extends JPanel implements IResize  {
     
     //</editor-fold>
 
-    public Resize(int x1, int x2 , int y1 , int y2){
+    public Rectangle(int x1, int x2 , int y1 , int y2){
         initUI(x1,x2,y1,y2);
     }
 
@@ -117,7 +117,7 @@ public class Resize  extends JPanel implements IResize  {
          
         Background backGround = new Background();
         
-        backGround.backgroundColour(800, 800, 50 , 50, g2);
+        backGround.backgroundColour(1500, 1500, 80 , 80, g2);
         
         }
     }

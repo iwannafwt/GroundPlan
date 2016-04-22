@@ -5,7 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import CanvasToDraw.WithShape.resize.IResize;
+import CanvasToDraw.WithShape.shape.IRectangle;
 
 /**
  *
@@ -13,10 +13,10 @@ import CanvasToDraw.WithShape.resize.IResize;
  */
 public class MouseAdapterForMoving extends MouseAdapter{
     
-    private final IResize iResizeHandle;
+    private final IRectangle iResizeHandle;
     private Point2D oldP;
     
-    public MouseAdapterForMoving(IResize iResizeHandle){
+    public MouseAdapterForMoving(IRectangle iResizeHandle){
         this.iResizeHandle = iResizeHandle;
     }
     
