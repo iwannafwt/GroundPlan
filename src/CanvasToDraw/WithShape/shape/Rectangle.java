@@ -4,26 +4,23 @@ import CanvasToDraw.WithShape.background.Background;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Shape;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
-import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import javax.swing.JPanel;
 
 /**
  *
  * @author ΙΩΑΝΝΑ
  */
-public class Rectangle  extends JPanel implements IRectangle  {
+public class Rectangle extends JPanel implements IRectangle {
+
     private Point2D[] points;
     private final int SIZE = 8;//to megethos apo to mikro tetragwnaki
     private int pos;
     private int posForItem;
 
-        
     //<editor-fold desc="GettersSetters" defaultstate="collapsed">
-    
     @Override
     public Point2D[] getPoints() {
         return points;
@@ -56,28 +53,28 @@ public class Rectangle  extends JPanel implements IRectangle  {
     public void setPos(int pos) {
         this.pos = pos;
     }
-    
-    //</editor-fold>
 
-    public Rectangle(int x1, int x2 , int y1 , int y2){
-        initUI(x1,x2,y1,y2);
+    //</editor-fold>
+    public Rectangle(int x1, int x2, int y1, int y2) {
+        initUI(x1, x2, y1, y2);
     }
 
     @Override
-    public void registerListeners(MouseAdapter MA ){//prosthetoume tous listener
+    public void registerListeners(MouseAdapter MA) {//prosthetoume tous listener
         addMouseListener(MA);//sinartisi tou JPanel
         addMouseMotionListener(MA);//sinartisi tou JPanel
     }
+    NewRectangle small;
+    NewRectangle large;
 
-    private void initUI(int x1, int x2 , int y1 , int y2) {
+    private void initUI(int x1, int x2, int y1, int y2) {
 
         posForItem = -1;
         pos = -1;//otan to position einai -1 simenei oti exoume 
-                 //kseklikarei to pontiki
-       
-        points = new Point2D[4];
-        points[0] = new Point2D.Double(x1, y1);
-        points[1] = new Point2D.Double(x2, y2);
+        //kseklikarei to pontiki 
+        small = new NewRectangle(new Point(x1, y1), new Point(x2, y2), 8);
+        large = new NewRectangle(new Point(x1 * 2, y1 * 2), new Point(x2 * 2, y2 * 2), 8);
+
         /*ta point enai i diagwnios
          *--------*
          |        |
@@ -85,31 +82,24 @@ public class Rectangle  extends JPanel implements IRectangle  {
          |        |
          |        |
          *--------*
-        */
-        //to deutero tetragwno
-        points[2] = new Point2D.Double(x1*2, y1*2);
-        points[3] = new Point2D.Double(x2*2, y2*2);
-        
+         */
     }
-    
+
     private void doDrawing(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
         g2.setColor(Color.red);//to xrwmma apo ta mikra ta tetragwnakia
-        
-        setBackground(Color.gray);
-        
-        MakeRectangle makeRec = new MakeRectangle();
-        makeRec.makeRec(points, g);
-         
-        Background backGround = new Background();
-        
-        backGround.backgroundColour(1500, 1500, 80 , 80, g2);
-        
-        
-        }
 
-    
+        setBackground(Color.gray);
+
+        small.doDrawing(g);
+        large.doDrawing(g);
+
+        Background backGround = new Background();
+
+        backGround.backgroundColour(1500, 1500, 80, 80, g2);
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -117,7 +107,7 @@ public class Rectangle  extends JPanel implements IRectangle  {
     }
 
     @Override
-    public void doUpdate(){
+    public void doUpdate() {
         repaint();
     }
 
