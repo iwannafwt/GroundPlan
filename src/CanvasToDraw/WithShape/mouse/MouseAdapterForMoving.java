@@ -11,33 +11,33 @@ import CanvasToDraw.WithShape.shape.IRectangle;
  *
  * @author ΙΩΑΝΝΑ
  */
-public class MouseAdapterForMoving extends MouseAdapter{
-    
+public class MouseAdapterForMoving extends MouseAdapter {
+
     private final IRectangle iResizeHandle;
     private Point2D oldP;
-    
-    public MouseAdapterForMoving(IRectangle iResizeHandle){
+
+    public MouseAdapterForMoving(IRectangle iResizeHandle) {
         this.iResizeHandle = iResizeHandle;
     }
-    
+
     @Override
     public void mousePressed(MouseEvent event) {
-    
-       Point p = event.getPoint();
-       oldP = event.getPoint();//blepw pou einai to pontiki->Pressed
-       Rectangle2D r = new Rectangle2D.Double();
-       
-       for (int i = 0; i < iResizeHandle.getPoints().length; i = i + 2) {
-            //edw entopizei pou briskete ta mikra rectangle
-            r.setFrameFromDiagonal(iResizeHandle.getPoints()[i], 
-                    iResizeHandle.getPoints()[i+1]);
+
+        Point p = event.getPoint();
+        oldP = event.getPoint();//blepw pou einai to pontiki->Pressed
+        Rectangle2D r = new Rectangle2D.Double();
+
+        for (int i = 0; i < iResizeHandle.getItems().size(); i++) {
+            r.setFrameFromDiagonal(iResizeHandle.getItems().get(i).getPoints()
+                    .get(0), iResizeHandle.getItems().get(i).getPoints()
+                            .get(1));
+
             if (r.contains(p)) {
-                iResizeHandle.setPosForItem(i);//dixnoume gia poio antikeimeno milame
+                iResizeHandle.setPosForItem(i);
                 return;
             }
         }
     }
-    
 
     @Override
     public void mouseReleased(MouseEvent event) {
@@ -47,30 +47,33 @@ public class MouseAdapterForMoving extends MouseAdapter{
     @Override
     public void mouseDragged(MouseEvent event) {
 
-        if (iResizeHandle.getPosForItem()== -1) {
+        if (iResizeHandle.getPosForItem() == -1) {
             return;
         }
-        
+
         Point2D p3 = new Point();
-        
-        p3.setLocation(event.getPoint().getX() - oldP.getX() ,event.getPoint().getY() - oldP.getY() );
+
+        p3.setLocation(event.getPoint().getX() - oldP.getX(),
+                event.getPoint().getY() - oldP.getY());
         oldP = event.getPoint();//auto einai to kainourgio Pressed
-        
+
         Point2D pToGo = new Point();
         pToGo.setLocation(
-                iResizeHandle.getPoints()[iResizeHandle.getPosForItem()].getX() 
-                        + p3.getX(),
-                iResizeHandle.getPoints()[iResizeHandle.getPosForItem()].getY() 
-                        + p3.getY());
-        iResizeHandle.getPoints()[iResizeHandle.getPosForItem()] = new Point((Point)pToGo);
-        
+                iResizeHandle.getItems().get(iResizeHandle.getPosForItem())
+                .getPoints().get(0).getX() + p3.getX(),
+                iResizeHandle.getItems().get(iResizeHandle.getPosForItem())
+                .getPoints().get(0).getY() + p3.getY());
+        iResizeHandle.getItems().get(iResizeHandle.getPosForItem())
+                .getPoints().set(0, new Point((Point) pToGo));
+
         pToGo.setLocation(
-                iResizeHandle.getPoints()[iResizeHandle.getPosForItem() + 1].getX() 
-                        + p3.getX(),
-                iResizeHandle.getPoints()[iResizeHandle.getPosForItem() + 1].getY() 
-                        + p3.getY());
-        iResizeHandle.getPoints()[iResizeHandle.getPosForItem() + 1] = new Point((Point)pToGo);
-        
+                iResizeHandle.getItems().get(iResizeHandle.getPosForItem())
+                .getPoints().get(1).getX() + p3.getX(),
+                iResizeHandle.getItems().get(iResizeHandle.getPosForItem())
+                .getPoints().get(1).getY() + p3.getY());
+        iResizeHandle.getItems().get(iResizeHandle.getPosForItem())
+                .getPoints().set(1, new Point((Point) pToGo));
+
         iResizeHandle.doUpdate();
     }
 }

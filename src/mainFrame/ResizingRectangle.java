@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import CanvasToDraw.WithShape.mouse.MouseAdapterForMoving;
 import CanvasToDraw.WithShape.mouse.MouseAdapterForResize;
-import CanvasToDraw.WithShape.shape.Rectangle;
+import CanvasToDraw.WithShape.shape.BaseCanvas;
 import CanvasToDraw.WithShape.shape.IRectangle;
 import toolboxPanel.rectangleForToolBox.RectangleForToolBox;
 
@@ -23,7 +23,7 @@ public class ResizingRectangle extends JFrame{
     }
     
     private void initUI() {
-        IRectangle IR = new Rectangle(150,50,150,100);//diastaseis apo ta tetragwnakia
+        IRectangle IR = new BaseCanvas(150,50,150,100);//diastaseis apo ta tetragwnakia
         RectangleForToolBox r = new RectangleForToolBox();
         
         IR.registerListeners(new MouseAdapterForResize(IR));

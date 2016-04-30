@@ -24,6 +24,16 @@ public class NewRectangle implements IRectangleV2{
     }
     
     @Override
+    public List<Point2D> getPoints(){          
+        return iziMode;    
+    }
+    
+    @Override
+    public int getSize(){
+        return SIZE;
+    }
+    
+    @Override
     public void doDrawing(Graphics g) {
         
         Graphics2D g2 = (Graphics2D)g;

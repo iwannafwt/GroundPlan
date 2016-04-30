@@ -6,30 +6,34 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
-import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JPanel;
 
 /**
  *
  * @author ΙΩΑΝΝΑ
  */
-public class Rectangle extends JPanel implements IRectangle {
-
-    private Point2D[] points;
+public class BaseCanvas extends JPanel implements IRectangle {
+    
+    private List<IItems> myItems = new ArrayList<>();
+    
     private final int SIZE = 8;//to megethos apo to mikro tetragwnaki
     private int pos;
+    private int posCorner;
     private int posForItem;
-
+    
+    private IItems rect;
+    private IItems large;
+    
     //<editor-fold desc="GettersSetters" defaultstate="collapsed">
-    @Override
-    public Point2D[] getPoints() {
-        return points;
-    }
 
+    @Override
     public int getPosForItem() {
         return posForItem;
     }
 
+    @Override
     public void setPosForItem(int posForItem) {
         this.posForItem = posForItem;
     }
@@ -45,17 +49,23 @@ public class Rectangle extends JPanel implements IRectangle {
     }
 
     @Override
-    public void setPoints(Point2D[] points) {
-        this.points = points;
-    }
-
-    @Override
     public void setPos(int pos) {
         this.pos = pos;
     }
 
+    @Override
+    public int getPosCorner() {
+        return posCorner;
+    }
+
+    @Override
+    public void setPosCorner(int posCorner) {
+        this.posCorner = posCorner;
+    }
+    
     //</editor-fold>
-    public Rectangle(int x1, int x2, int y1, int y2) {
+    
+    public BaseCanvas(int x1, int x2, int y1, int y2) {
         initUI(x1, x2, y1, y2);
     }
 
@@ -64,17 +74,18 @@ public class Rectangle extends JPanel implements IRectangle {
         addMouseListener(MA);//sinartisi tou JPanel
         addMouseMotionListener(MA);//sinartisi tou JPanel
     }
-    NewRectangle small;
-    NewRectangle large;
 
     private void initUI(int x1, int x2, int y1, int y2) {
 
         posForItem = -1;
         pos = -1;//otan to position einai -1 simenei oti exoume 
         //kseklikarei to pontiki 
-        small = new NewRectangle(new Point(x1, y1), new Point(x2, y2), 8);
+        rect = new NewRectangle(new Point(x1, y1), new Point(x2, y2), 8);
         large = new NewRectangle(new Point(x1 * 2, y1 * 2), new Point(x2 * 2, y2 * 2), 8);
-
+        
+        setItems(rect);
+        setItems(large);
+        
         /*ta point enai i diagwnios
          *--------*
          |        |
@@ -92,7 +103,7 @@ public class Rectangle extends JPanel implements IRectangle {
 
         setBackground(Color.gray);
 
-        small.doDrawing(g);
+        rect.doDrawing(g);
         large.doDrawing(g);
 
         Background backGround = new Background();
@@ -110,5 +121,14 @@ public class Rectangle extends JPanel implements IRectangle {
     public void doUpdate() {
         repaint();
     }
-
+    
+    @Override 
+    public List<IItems> getItems(){
+        return myItems;
+    }
+    
+    @Override 
+    public void setItems(IItems newItem){
+        myItems.add(newItem);
+    }
 }
