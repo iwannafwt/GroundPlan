@@ -17,7 +17,8 @@ public class Background {
 
     
     public void backgroundColour(int width , int height , int rows , int cols , Graphics2D g){
-    
+        //opos kanei auto edw.. pou apla to kaleses kai "auto"zografistike mono tou   to katalaba kai piga n t kanw alla den kserw pws na t kalesw
+        //sta8ero exeis? ^_^
         int i;
 
         // draw the rows

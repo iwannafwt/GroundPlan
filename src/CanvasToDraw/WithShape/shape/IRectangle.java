@@ -3,6 +3,7 @@ package CanvasToDraw.WithShape.shape;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.geom.Point2D;
+import java.util.List;
 
 /**
  *
@@ -11,8 +12,13 @@ import java.awt.geom.Point2D;
 public interface IRectangle {
 
     void doUpdate();
-
-    Point2D[] getPoints();
+    int getPosCorner();
+    void setPosCorner(int posCorner);
+    
+//    List<Point2D> getPoints();
+    
+    List<IItems> getItems();
+    void setItems(IItems newItem);
 
     int getPos();
 
@@ -20,7 +26,7 @@ public interface IRectangle {
 
     void paintComponent(Graphics g);
 
-    void setPoints(Point2D[] points);
+//    void setPoints(List<Point2D> points);
 
     void setPos(int pos);
     
