@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,9 @@ import javax.swing.JPanel;
 public class BaseCanvas extends JPanel implements ICanvas {
     
     private List<IItems> myItems = new ArrayList<>();
+    
+    private List<IItems> undoItems = new ArrayList<>();
+    private List<IItems> redoItems = new ArrayList<>();
     
     private final int SIZE = 8;//to megethos apo to mikro tetragwnaki
     private int pos;
@@ -70,7 +74,41 @@ public class BaseCanvas extends JPanel implements ICanvas {
     }
 
     @Override
-    public void registerListeners(MouseAdapter MA) {//prosthetoume tous listener
+    public boolean undo(){
+        if(undoItems == null || undoItems.isEmpty()) {
+            return false;
+        }
+        redoItems.clear();        
+        for(IItems vLookUp:myItems){
+            redoItems.add(vLookUp.reCreate());
+        }
+        
+        myItems.clear(); 
+        for(IItems vLookUp:undoItems){
+            myItems.add(vLookUp.reCreate());
+        }
+        
+        doUpdate();
+        
+        return true;        
+    }
+    
+    @Override
+    public boolean redo(){
+        if(redoItems == null || redoItems.isEmpty()) {
+            return false;
+        }        
+        myItems.clear(); 
+        for(IItems vLookUp:redoItems){
+            myItems.add(vLookUp.reCreate());
+        }
+        doUpdate();
+        
+        return true;
+    }
+    
+    @Override
+    public void registerMouseListeners(MouseAdapter MA) {//prosthetoume tous listener
         addMouseListener(MA);//sinartisi tou JPanel
         addMouseMotionListener(MA);//sinartisi tou JPanel
     }
@@ -85,7 +123,7 @@ public class BaseCanvas extends JPanel implements ICanvas {
         
         setItems(rect);
         setItems(large);
-        
+        setUndo();
         /*ta point enai i diagwnios
          *--------*
          |        |
@@ -98,6 +136,7 @@ public class BaseCanvas extends JPanel implements ICanvas {
     
     @Override
     public void registerItem(IItems t) {
+        setUndo();
         setItems(t.reCreate()); //kanoume reCreate gia na spasoume to reference
         doUpdate(); 
     }
@@ -140,5 +179,13 @@ public class BaseCanvas extends JPanel implements ICanvas {
     @Override 
     public void setItems(IItems newItem){
         myItems.add(newItem);
+    }
+    
+    @Override
+    public void setUndo(){
+        undoItems.clear();
+        for(IItems vLookUp:myItems){
+            undoItems.add(vLookUp.reCreate());
+        }
     }
 }

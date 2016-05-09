@@ -33,6 +33,7 @@ public class MouseAdapterForMoving extends MouseAdapter {
                             .get(1));
 
             if (r.contains(p)) {
+                iResizeHandle.setUndo();
                 iResizeHandle.setPosForItem(i);
                 return;
             }
