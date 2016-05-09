@@ -38,6 +38,7 @@ public class MouseAdapterForResize extends MouseAdapter{
                     myResizeToHandle.getSIZE(), myResizeToHandle.getSIZE());
             
                 if (r.contains(p)) {
+                    myResizeToHandle.setUndo();
 
                     myResizeToHandle.setPos(container);
                     myResizeToHandle.setPosCorner(inner);

@@ -1,5 +1,6 @@
 package mainFrame;
 
+import CanvasToDraw.WithShape.mouse.KeyBoardListenerUndRed;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,8 +24,7 @@ public class BaseFrame extends JFrame{
     private ICanvas BaseCanvas;
     private IRectangleForToolBox toolBox;
     
-    public BaseFrame()  {
-        
+    public BaseFrame()  {        
         initUI();
     }
     
@@ -38,10 +38,10 @@ public class BaseFrame extends JFrame{
         BaseCanvas = new BaseCanvas(150,50,150,100);//diastaseis apo ta tetragwnakia
         toolBox = new RectangleForToolBox(this);
         
-        BaseCanvas.registerListeners(new MouseAdapterForResize(BaseCanvas));
-        BaseCanvas.registerListeners(new MouseAdapterForMoving(BaseCanvas));
+        BaseCanvas.registerMouseListeners(new MouseAdapterForResize(BaseCanvas));
+        BaseCanvas.registerMouseListeners(new MouseAdapterForMoving(BaseCanvas));
+        addKeyListener(new KeyBoardListenerUndRed(this));
         
-
         if(BaseCanvas instanceof JPanel){
             
         split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,  (JPanel)toolBox , (JPanel)BaseCanvas);
@@ -65,4 +65,11 @@ public class BaseFrame extends JFrame{
         
     }
     
+    public void redo(){
+        BaseCanvas.redo();
+    }
+    
+    public void undo(){
+        BaseCanvas.undo();
+    }
 }

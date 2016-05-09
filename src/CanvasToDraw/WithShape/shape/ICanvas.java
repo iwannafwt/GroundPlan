@@ -1,6 +1,7 @@
 package CanvasToDraw.WithShape.shape;
 
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.geom.Point2D;
 import java.util.List;
@@ -31,9 +32,14 @@ public interface ICanvas {
 
     void setPos(int pos);
     
-    public void registerListeners(MouseAdapter MA );
-    
+    public void registerMouseListeners(MouseAdapter MA );
+        
     int getPosForItem();
     
     void setPosForItem(int posForItem);
+    
+    
+    public boolean undo();    
+    public boolean redo();
+    public void setUndo();
 }
