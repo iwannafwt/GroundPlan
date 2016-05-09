@@ -1,6 +1,8 @@
 package toolboxPanel.rectangleForToolBox;
 
+import CanvasToDraw.WithShape.shape.IItems;
 import java.awt.Graphics;
+import java.util.List;
 
 /**
  *
@@ -8,8 +10,9 @@ import java.awt.Graphics;
  */
 public interface IRectangleForToolBox {
     
+    public void sendNewRegister(IItems newItem);
 
     public void paintComponent(Graphics g); 
     public void doRepaint();
-    public void reSet(int X , int Y);
+    public List<RectangleConst> getItems();
 }

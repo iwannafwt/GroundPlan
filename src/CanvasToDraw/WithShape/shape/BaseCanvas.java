@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  *
  * @author ΙΩΑΝΝΑ
  */
-public class BaseCanvas extends JPanel implements IRectangle {
+public class BaseCanvas extends JPanel implements ICanvas {
     
     private List<IItems> myItems = new ArrayList<>();
     
@@ -95,20 +95,30 @@ public class BaseCanvas extends JPanel implements IRectangle {
          *--------*
          */
     }
-
+    
+    @Override
+    public void registerItem(IItems t) {
+        setItems(t.reCreate()); //kanoume reCreate gia na spasoume to reference
+        doUpdate(); 
+    }
+    
     private void doDrawing(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
+        Background backGround = new Background();
+
+        backGround.backgroundColour(1500, 1500, 80, 80, g2);
+        
 
         g2.setColor(Color.red);//to xrwmma apo ta mikra ta tetragwnakia
 
         setBackground(Color.gray);
+        
+        for(IItems vLookUp:myItems){
+            vLookUp.doDrawing(g2);
+        }
+//        rect.doDrawing(g);
+//        large.doDrawing(g);
 
-        rect.doDrawing(g);
-        large.doDrawing(g);
-
-        Background backGround = new Background();
-
-        backGround.backgroundColour(1500, 1500, 80, 80, g2);
     }
 
     @Override

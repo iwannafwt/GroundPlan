@@ -3,6 +3,7 @@ package CanvasToDraw.WithShape.shape;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Paint;
 import java.util.List;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -48,8 +49,16 @@ public class NewRectangle implements IRectangleV2{
 
         //dimiourgite kai ena tetragwno.gi auto einai ana 2         
         r.setFrameFromDiagonal(iziMode.get(0),iziMode.get(1));
+        Paint tmp = g2.getPaint();
         g2.setPaint(new Color(0, 0, 100));// to xrwmma pou tha exei to tetragwno
         g2.fill(r);//gemizei to tetragwno
         g2.draw(r);//kanei to perigramma tou tetragwnou
+        g2.setPaint(tmp);
     }    
+
+    @Override
+    public IItems reCreate() {
+        return new NewRectangle(getPoints().get(0), 
+                getPoints().get(1), getSize());
+    }
 }

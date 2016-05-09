@@ -17,4 +17,5 @@ public interface IItems {
     List<Point2D> getPoints();
     void doDrawing(Graphics g);  
     int getSize(); 
+    IItems reCreate();
 }

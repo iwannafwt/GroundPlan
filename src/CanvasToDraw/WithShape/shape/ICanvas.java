@@ -9,9 +9,10 @@ import java.util.List;
  *
  * @author ΙΩΑΝΝΑ
  */
-public interface IRectangle {
+public interface ICanvas {
 
     void doUpdate();
+    void registerItem(IItems newItem);
     int getPosCorner();
     void setPosCorner(int posCorner);
     
