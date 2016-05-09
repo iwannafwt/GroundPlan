@@ -1,27 +1,42 @@
 package toolboxPanel.rectangleForToolBox;
 
+import CanvasToDraw.WithShape.shape.IItems;
+import CanvasToDraw.WithShape.shape.NewRectangle;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JPanel;
+import mainFrame.BaseFrame;
 import toolboxPanel.mouseAdapter.MouseEventsForToolBox;
-import toolboxPanel.mouseAdapter.MouseListenerForRectangle;
 
 /**
  *
  * @author ΙΩΑΝΝΑ
  */
 public class RectangleForToolBox extends JPanel implements IRectangleForToolBox {
-    private RectangleConst rectangle;
-
-    public RectangleForToolBox() {
-
+    
+    private final List<RectangleConst> myItems = new ArrayList<>();
+    private final BaseFrame RR;
+    
+    public RectangleForToolBox(BaseFrame RR) {
+        this.RR = RR;
         initializeShape();
     }
 
+    @Override
+    public void sendNewRegister(IItems newItem){
+        RR.registerToCanvas(newItem);
+    }
+    
     public void initializeShape() {
-
-        rectangle = new RectangleConst(50, 50, 50, 50);//i thesi pou tha briskete 
+       myItems.add( new RectangleConst(50, 50, 50, 50));//i thesi pou tha briskete 
+        
+        
+        addMouseListener(new MouseEventsForToolBox(new NewRectangle( 
+              new Point(200, 200), new Point(310, 310), 8),this));
         //to tetragwno
     }
 
@@ -30,12 +45,11 @@ public class RectangleForToolBox extends JPanel implements IRectangleForToolBox 
 
         //i dimiourgia tou tetragwnou
         g2d.setPaint(new Color(0, 0, 100));// to xrwmma pou tha exei to tetragwno
-        g2d.fill(rectangle);
+        for(RectangleConst vLookUp:myItems){
+            g2d.fill(vLookUp);
+        }
         
-        
-      addMouseListener(new MouseEventsForToolBox());
-      addMouseMotionListener(new MouseListenerForRectangle());
-    }
+   }
     
     @Override
     public void paintComponent(Graphics g) {
@@ -44,14 +58,13 @@ public class RectangleForToolBox extends JPanel implements IRectangleForToolBox 
         doDrawing(g);
     }
     
+    @Override
     public void doRepaint(){
-        
         repaint();
     }
     
-    public void reSet(int X , int Y){
-        
-        rectangle.x = X;
-        rectangle.y = Y;
+    @Override
+    public List<RectangleConst> getItems(){
+        return myItems;
     }
 }

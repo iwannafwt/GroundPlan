@@ -7,32 +7,44 @@ import javax.swing.JSplitPane;
 import CanvasToDraw.WithShape.mouse.MouseAdapterForMoving;
 import CanvasToDraw.WithShape.mouse.MouseAdapterForResize;
 import CanvasToDraw.WithShape.shape.BaseCanvas;
-import CanvasToDraw.WithShape.shape.IRectangle;
+import CanvasToDraw.WithShape.shape.IItems;
+import java.awt.Panel;
 import toolboxPanel.rectangleForToolBox.RectangleForToolBox;
+import toolboxPanel.rectangleForToolBox.splitToolBox;
+import CanvasToDraw.WithShape.shape.ICanvas;
+import toolboxPanel.rectangleForToolBox.IRectangleForToolBox;
 
 /**
  *
  * @author ΙΩΑΝΝΑ
  */
-public class ResizingRectangle extends JFrame{
+public class BaseFrame extends JFrame{
     protected JSplitPane split;
+    private ICanvas BaseCanvas;
+    private IRectangleForToolBox toolBox;
     
-    public ResizingRectangle()  {
+    public BaseFrame()  {
         
         initUI();
     }
     
+    public void registerToCanvas(IItems newItem){
+        if(BaseCanvas != null) {
+            BaseCanvas.registerItem(newItem);
+        }
+    }
+    
     private void initUI() {
-        IRectangle IR = new BaseCanvas(150,50,150,100);//diastaseis apo ta tetragwnakia
-        RectangleForToolBox r = new RectangleForToolBox();
+        BaseCanvas = new BaseCanvas(150,50,150,100);//diastaseis apo ta tetragwnakia
+        toolBox = new RectangleForToolBox(this);
         
-        IR.registerListeners(new MouseAdapterForResize(IR));
-        IR.registerListeners(new MouseAdapterForMoving(IR));
+        BaseCanvas.registerListeners(new MouseAdapterForResize(BaseCanvas));
+        BaseCanvas.registerListeners(new MouseAdapterForMoving(BaseCanvas));
         
 
-        if(IR instanceof JPanel){
+        if(BaseCanvas instanceof JPanel){
             
-        split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,  r , (JPanel)IR);
+        split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,  (JPanel)toolBox , (JPanel)BaseCanvas);
         split.setContinuousLayout(false);
         split.setOneTouchExpandable(false);
 

@@ -11,7 +11,7 @@ public class RectangleConst extends Rectangle2D.Float{
 
         setRect(x, y, width, height);
     }
-
+    
     public boolean isHit(float x, float y) {
 
         return getBounds2D().contains(x, y);
