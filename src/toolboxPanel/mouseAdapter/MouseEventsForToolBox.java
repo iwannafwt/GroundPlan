@@ -11,21 +11,21 @@ import toolboxPanel.rectangleForToolBox.RectangleConst;
  * @author ΙΩΑΝΝΑ
  */
 public class MouseEventsForToolBox implements MouseListener{
-    private final IItems r ; 
-    private final IRectangleForToolBox IRF;
+    private final IItems Iitems ; 
+    private final IRectangleForToolBox IRectangleForToolBox;
     
-    public MouseEventsForToolBox(IItems r,IRectangleForToolBox IRF){
-        this.IRF = IRF;
-        this.r = r;
+    public MouseEventsForToolBox(IItems myItem,IRectangleForToolBox IRectangleForToolbox){
+        this.IRectangleForToolBox = IRectangleForToolbox;
+        this.Iitems = myItem;
     }
     
     boolean clicked;
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        for(RectangleConst vLookUp:IRF.getItems()){
+        for(RectangleConst vLookUp:IRectangleForToolBox.getItems()){
             if(vLookUp.isHit(e.getX(), e.getY())){
-                IRF.sendNewRegister(r);      
+                IRectangleForToolBox.sendNewRegister(Iitems);      
             }
         }       
  

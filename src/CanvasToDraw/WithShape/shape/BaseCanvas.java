@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,18 +16,18 @@ import javax.swing.JPanel;
  */
 public class BaseCanvas extends JPanel implements ICanvas {
     
-    private List<IItems> myItems = new ArrayList<>();
+    private List<IItems> myItemsList = new ArrayList<>();
     
-    private List<IItems> undoItems = new ArrayList<>();
-    private List<IItems> redoItems = new ArrayList<>();
+    private List<IItems> undoItemsList = new ArrayList<>();
+    private List<IItems> redoItemsList = new ArrayList<>();
     
     private final int SIZE = 8;//to megethos apo to mikro tetragwnaki
     private int pos;
     private int posCorner;
     private int posForItem;
     
-    private IItems rect;
-    private IItems large;
+    private IItems rectangleOne;
+    private IItems rectangleTwo;
     
     //<editor-fold desc="GettersSetters" defaultstate="collapsed">
 
@@ -75,17 +74,19 @@ public class BaseCanvas extends JPanel implements ICanvas {
 
     @Override
     public boolean undo(){
-        if(undoItems == null || undoItems.isEmpty()) {
+        if(undoItemsList == null || undoItemsList.isEmpty()) {
             return false;
         }
-        redoItems.clear();        
-        for(IItems vLookUp:myItems){
-            redoItems.add(vLookUp.reCreate());
+        redoItemsList.clear(); //katharizei ti lista redo gia na parei ts kainourgies times       
+        for(IItems vLookUp:myItemsList){
+            redoItemsList.add(vLookUp.reCreate());//sti lista redo krataei ta 
+                                                  //points pou exoun ta tetragwna epanw sto canva
         }
         
-        myItems.clear(); 
-        for(IItems vLookUp:undoItems){
-            myItems.add(vLookUp.reCreate());
+        myItemsList.clear(); //katharizei ti lista apo ta items
+        for(IItems vLookUp:undoItemsList){
+            myItemsList.add(vLookUp.reCreate());//prosthetei mesa sti list myItems 
+                                                //ta point pou exei i lista undo
         }
         
         doUpdate();
@@ -95,12 +96,12 @@ public class BaseCanvas extends JPanel implements ICanvas {
     
     @Override
     public boolean redo(){
-        if(redoItems == null || redoItems.isEmpty()) {
+        if(redoItemsList == null || redoItemsList.isEmpty()) {
             return false;
         }        
-        myItems.clear(); 
-        for(IItems vLookUp:redoItems){
-            myItems.add(vLookUp.reCreate());
+        myItemsList.clear(); 
+        for(IItems vLookUp:redoItemsList){
+            myItemsList.add(vLookUp.reCreate());
         }
         doUpdate();
         
@@ -118,11 +119,11 @@ public class BaseCanvas extends JPanel implements ICanvas {
         posForItem = -1;
         pos = -1;//otan to position einai -1 simenei oti exoume 
         //kseklikarei to pontiki 
-        rect = new NewRectangle(new Point(x1, y1), new Point(x2, y2), 8);
-        large = new NewRectangle(new Point(x1 * 2, y1 * 2), new Point(x2 * 2, y2 * 2), 8);
+        rectangleOne = new NewRectangle(new Point(x1, y1), new Point(x2, y2), 8);
+        rectangleTwo = new NewRectangle(new Point(x1 * 2, y1 * 2), new Point(x2 * 2, y2 * 2), 8);
         
-        setItems(rect);
-        setItems(large);
+        setItems(rectangleOne);
+        setItems(rectangleTwo);
         setUndo();
         /*ta point enai i diagwnios
          *--------*
@@ -152,11 +153,11 @@ public class BaseCanvas extends JPanel implements ICanvas {
 
         setBackground(Color.gray);
         
-        for(IItems vLookUp:myItems){
+        for(IItems vLookUp:myItemsList){
             vLookUp.doDrawing(g2);
         }
-//        rect.doDrawing(g);
-//        large.doDrawing(g);
+//        rectangleOne.doDrawing(g);
+//        rectangleTwo.doDrawing(g);
 
     }
 
@@ -170,22 +171,22 @@ public class BaseCanvas extends JPanel implements ICanvas {
     public void doUpdate() {
         repaint();
     }
-    
+    /*----------------Service------------------------*/
     @Override 
     public List<IItems> getItems(){
-        return myItems;
+        return myItemsList;
     }
     
     @Override 
     public void setItems(IItems newItem){
-        myItems.add(newItem);
+        myItemsList.add(newItem);
     }
     
     @Override
     public void setUndo(){
-        undoItems.clear();
-        for(IItems vLookUp:myItems){
-            undoItems.add(vLookUp.reCreate());
+        undoItemsList.clear();
+        for(IItems vLookUp:myItemsList){
+            undoItemsList.add(vLookUp.reCreate());
         }
     }
 }

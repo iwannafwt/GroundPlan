@@ -14,10 +14,10 @@ import mainFrame.BaseFrame;
  * @author ΙΩΑΝΝΑ
  */
 public class KeyBoardListenerUndRed extends KeyAdapter{
-    private final BaseFrame myFrame;
+    private final BaseFrame baseFrame;
 
-    public KeyBoardListenerUndRed(BaseFrame myFrame) {
-        this.myFrame = myFrame;
+    public KeyBoardListenerUndRed(BaseFrame baseFrame) {
+        this.baseFrame = baseFrame;
     }
     
     
@@ -29,9 +29,9 @@ public class KeyBoardListenerUndRed extends KeyAdapter{
     @Override
     public void keyPressed(KeyEvent e) {
         if ((e.getKeyCode() == KeyEvent.VK_Z) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
-            myFrame.undo();
+            baseFrame.undo();//redo sinartisi pou kaname emeis st baseFrame
         } else if ((e.getKeyCode() == KeyEvent.VK_U) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
-            myFrame.redo();
+            baseFrame.redo();//redo sinartisi pou kaname emeis st baseFrame
         }
     }
     

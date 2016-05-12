@@ -19,16 +19,16 @@ import toolboxPanel.mouseAdapter.MouseEventsForToolBox;
 public class RectangleForToolBox extends JPanel implements IRectangleForToolBox {
     
     private final List<RectangleConst> myItems = new ArrayList<>();
-    private final BaseFrame RR;
+    private final BaseFrame BASEFRAME;
     
-    public RectangleForToolBox(BaseFrame RR) {
-        this.RR = RR;
+    public RectangleForToolBox(BaseFrame BaseFrame) {
+        this.BASEFRAME = BaseFrame;
         initializeShape();
     }
 
     @Override
     public void sendNewRegister(IItems newItem){
-        RR.registerToCanvas(newItem);
+        BASEFRAME.registerToCanvas(newItem);
     }
     
     public void initializeShape() {
