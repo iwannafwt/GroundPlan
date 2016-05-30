@@ -14,11 +14,11 @@ import CanvasToDraw.WithShape.shape.IItems;
  */
 public class MouseAdapterForMoving extends MouseAdapter {
 
-    private final ICanvas iResizeHandle;
+    private final ICanvas iCanvas;
     private Point2D oldP;
 
     public MouseAdapterForMoving(ICanvas iResizeHandle) {
-        this.iResizeHandle = iResizeHandle;
+        this.iCanvas = iResizeHandle;
     }
 
     @Override
@@ -26,18 +26,18 @@ public class MouseAdapterForMoving extends MouseAdapter {
 
         Point eventPoint = event.getPoint();
         oldP = event.getPoint();//blepw pou einai to pontiki->Pressed
-        iResizeHandle.startMovingItemContainingPoint(eventPoint);
+        iCanvas.startMovingItemContainingPoint(eventPoint);
     }
 
     @Override
     public void mouseReleased(MouseEvent event) {
-        iResizeHandle.setItemToMove(null);
+        iCanvas.setItemToMove(null);
     }
 
     @Override
     public void mouseDragged(MouseEvent event) {
 
-        if (iResizeHandle.hasSomethingToMove()) {
+        if (iCanvas.hasSomethingToMove()) {
 
             Point2D p3 = new Point();
 
@@ -46,23 +46,21 @@ public class MouseAdapterForMoving extends MouseAdapter {
             oldP = event.getPoint();//auto einai to kainourgio Pressed
 
             Point2D pToGo = new Point();
-            pToGo.setLocation(
-                    iResizeHandle.getItemToMove()
+            pToGo.setLocation(iCanvas.getItemToMove()
                     .getPoints().get(0).getX() + p3.getX(),
-                    iResizeHandle.getItemToMove()
+                    iCanvas.getItemToMove()
                     .getPoints().get(0).getY() + p3.getY());
-            iResizeHandle.getItemToMove()
+            iCanvas.getItemToMove()
                     .getPoints().set(0, new Point((Point) pToGo));
 
-            pToGo.setLocation(
-                    iResizeHandle.getItemToMove()
+            pToGo.setLocation(iCanvas.getItemToMove()
                     .getPoints().get(1).getX() + p3.getX(),
-                    iResizeHandle.getItemToMove()
+                    iCanvas.getItemToMove()
                     .getPoints().get(1).getY() + p3.getY());
-            iResizeHandle.getItemToMove()
+            iCanvas.getItemToMove()
                     .getPoints().set(1, new Point((Point) pToGo));
 
-            iResizeHandle.doUpdate();
+            iCanvas.doUpdate();
         }
     }
 }
