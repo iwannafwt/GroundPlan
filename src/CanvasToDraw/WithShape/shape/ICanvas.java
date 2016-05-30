@@ -34,12 +34,15 @@ public interface ICanvas {
     
     public void registerMouseListeners(MouseAdapter MA );
         
-    int getPosForItem();
+    IItems getItemToMove();
     
-    void setPosForItem(int posForItem);
+    void setItemToMove(IItems item);
     
+    boolean hasSomethingToMove();
+  
     
     public boolean undo();    
     public boolean redo();
     public void setUndo();
+    public void startMovingItemContainingPoint(Point2D point);
 }

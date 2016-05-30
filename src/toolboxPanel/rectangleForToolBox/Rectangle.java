@@ -6,8 +6,8 @@ import java.awt.geom.Rectangle2D;
  *
  * @author ΙΩΑΝΝΑ
  */
-public class RectangleConst extends Rectangle2D.Float{
-    public RectangleConst(float x, float y, float width, float height) {
+public class Rectangle extends Rectangle2D.Float{
+    public Rectangle(float x, float y, float width, float height) {
 
         setRect(x, y, width, height);
     }

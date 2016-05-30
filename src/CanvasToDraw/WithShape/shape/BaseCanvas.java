@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -24,7 +25,7 @@ public class BaseCanvas extends JPanel implements ICanvas {
     private final int SIZE = 8;//to megethos apo to mikro tetragwnaki
     private int pos;
     private int posCorner;
-    private int posForItem;
+    private IItems itemToMove;
     
     private IItems rectangleOne;
     private IItems rectangleTwo;
@@ -32,15 +33,20 @@ public class BaseCanvas extends JPanel implements ICanvas {
     //<editor-fold desc="GettersSetters" defaultstate="collapsed">
 
     @Override
-    public int getPosForItem() {
-        return posForItem;
+    public IItems getItemToMove() {
+        return itemToMove;
     }
 
     @Override
-    public void setPosForItem(int posForItem) {
-        this.posForItem = posForItem;
+    public void setItemToMove(IItems posForItem) {
+        this.itemToMove = posForItem;
     }
 
+    @Override
+    public boolean hasSomethingToMove()
+    {
+        return this.itemToMove == null;
+    }
     @Override
     public int getSIZE() {
         return SIZE;
@@ -116,7 +122,7 @@ public class BaseCanvas extends JPanel implements ICanvas {
 
     private void initUI(int x1, int x2, int y1, int y2) {
 
-        posForItem = -1;
+        itemToMove = null;
         pos = -1;//otan to position einai -1 simenei oti exoume 
         //kseklikarei to pontiki 
         rectangleOne = new NewRectangle(new Point(x1, y1), new Point(x2, y2), 8);
@@ -189,4 +195,17 @@ public class BaseCanvas extends JPanel implements ICanvas {
             undoItemsList.add(vLookUp.reCreate());
         }
     }
+
+    @Override
+    public void startMovingItemContainingPoint(Point2D point) {
+  
+        for (IItems item : this.getItems()) {
+            if (item.containsPoint(point)) {
+                this.setUndo();
+
+                this.setItemToMove(item);
+            }
+        }    }
+    
+    
 }

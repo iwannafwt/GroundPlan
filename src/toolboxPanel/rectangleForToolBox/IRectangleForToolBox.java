@@ -14,5 +14,5 @@ public interface IRectangleForToolBox {
 
     public void paintComponent(Graphics g); 
     public void doRepaint();
-    public List<RectangleConst> getItems();
+    public List<Rectangle> getItems();
 }

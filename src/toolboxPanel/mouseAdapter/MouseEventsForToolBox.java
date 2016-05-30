@@ -4,7 +4,7 @@ import CanvasToDraw.WithShape.shape.IItems;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import toolboxPanel.rectangleForToolBox.IRectangleForToolBox;
-import toolboxPanel.rectangleForToolBox.RectangleConst;
+import toolboxPanel.rectangleForToolBox.Rectangle;
 
 /**
  *
@@ -23,7 +23,7 @@ public class MouseEventsForToolBox implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        for(RectangleConst vLookUp:IRectangleForToolBox.getItems()){
+        for(Rectangle vLookUp:IRectangleForToolBox.getItems()){
             if(vLookUp.isHit(e.getX(), e.getY())){
                 IRectangleForToolBox.sendNewRegister(Iitems);      
             }

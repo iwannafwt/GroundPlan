@@ -15,7 +15,11 @@ import java.util.List;
  */
 public interface IItems {
     List<Point2D> getPoints();
-    void doDrawing(Graphics g);  
+    void doDrawing(Graphics g);
+    Point2D getUpperPoint();
+    Point2D getLowerPoint();
     int getSize(); 
     IItems reCreate();
+    
+    boolean containsPoint(Point2D point);
 }

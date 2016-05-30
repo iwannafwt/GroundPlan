@@ -9,9 +9,7 @@ import CanvasToDraw.WithShape.mouse.MouseAdapterForMoving;
 import CanvasToDraw.WithShape.mouse.MouseAdapterForResize;
 import CanvasToDraw.WithShape.shape.BaseCanvas;
 import CanvasToDraw.WithShape.shape.IItems;
-import java.awt.Panel;
 import toolboxPanel.rectangleForToolBox.RectangleForToolBox;
-import toolboxPanel.rectangleForToolBox.splitToolBox;
 import CanvasToDraw.WithShape.shape.ICanvas;
 import toolboxPanel.rectangleForToolBox.IRectangleForToolBox;
 

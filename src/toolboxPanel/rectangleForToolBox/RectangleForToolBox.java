@@ -18,7 +18,7 @@ import toolboxPanel.mouseAdapter.MouseEventsForToolBox;
  */
 public class RectangleForToolBox extends JPanel implements IRectangleForToolBox {
     
-    private final List<RectangleConst> myItems = new ArrayList<>();
+    private final List<Rectangle> myItems = new ArrayList<>();
     private final BaseFrame BASEFRAME;
     
     public RectangleForToolBox(BaseFrame BaseFrame) {
@@ -32,7 +32,7 @@ public class RectangleForToolBox extends JPanel implements IRectangleForToolBox 
     }
     
     public void initializeShape() {
-       myItems.add( new RectangleConst(50, 50, 50, 50));//i thesi pou tha briskete 
+       myItems.add( new Rectangle(50, 50, 50, 50));//i thesi pou tha briskete 
         
         
         addMouseListener(new MouseEventsForToolBox(new NewRectangle( 
@@ -45,7 +45,7 @@ public class RectangleForToolBox extends JPanel implements IRectangleForToolBox 
 
         //i dimiourgia tou tetragwnou
         g2d.setPaint(new Color(0, 0, 100));// to xrwmma pou tha exei to tetragwno
-        for(RectangleConst vLookUp:myItems){
+        for(Rectangle vLookUp:myItems){
             g2d.fill(vLookUp);
         }
         
@@ -64,7 +64,7 @@ public class RectangleForToolBox extends JPanel implements IRectangleForToolBox 
     }
     
     @Override
-    public List<RectangleConst> getItems(){
+    public List<Rectangle> getItems(){
         return myItems;
     }
 }
